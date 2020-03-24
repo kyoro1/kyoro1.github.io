@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-03-24T14:41:18.459Z</updated>
+  <updated>2020-03-24T14:42:10.128Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://kyoro1.github.io/2020/03/24/support-pages/"/>
     <id>https://kyoro1.github.io/2020/03/24/support-pages/</id>
     <published>2020-03-24T12:29:44.000Z</published>
-    <updated>2020-03-24T14:41:18.459Z</updated>
+    <updated>2020-03-24T14:42:10.128Z</updated>
     
     <summary type="html">
     
@@ -29,13 +29,15 @@
       
         
         
-          &lt;h1 id=&quot;Hexoで参考にしたサイト&quot;&gt;&lt;a href=&quot;#Hexoで参考にしたサイト&quot; class=&quot;headerlink&quot; title=&quot;Hexoで参考にしたサイト&quot;&gt;&lt;/a&gt;Hexoで参考にしたサイト&lt;/h1&gt;&lt;h2 id=&quot;まずは作ろう&quot;&gt;&lt;a
+          &lt;h2 id=&quot;Hexoで参考にしたサイト&quot;&gt;&lt;a href=&quot;#Hexoで参考にしたサイト&quot; class=&quot;headerlink&quot; title=&quot;Hexoで参考にしたサイト&quot;&gt;&lt;/a&gt;Hexoで参考にしたサイト&lt;/h2&gt;&lt;h3 id=&quot;まずは作ろう&quot;&gt;&lt;a
         
       
     
     </summary>
     
     
+    
+      <category term="site maintenance" scheme="https://kyoro1.github.io/tags/site-maintenance/"/>
     
   </entry>
   
