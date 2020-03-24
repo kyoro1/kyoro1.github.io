@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Test</title>
   
-  
+  <subtitle>Around data science</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-03-24T14:19:00.606Z</updated>
+  <updated>2020-03-24T14:41:18.459Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://kyoro1.github.io/2020/03/24/support-pages/"/>
     <id>https://kyoro1.github.io/2020/03/24/support-pages/</id>
     <published>2020-03-24T12:29:44.000Z</published>
-    <updated>2020-03-24T14:19:00.606Z</updated>
+    <updated>2020-03-24T14:41:18.459Z</updated>
     
     <summary type="html">
     
@@ -44,7 +44,7 @@
     <link href="https://kyoro1.github.io/2020/03/24/about/"/>
     <id>https://kyoro1.github.io/2020/03/24/about/</id>
     <published>2020-03-24T12:11:27.000Z</published>
-    <updated>2020-03-24T12:28:28.130Z</updated>
+    <updated>2020-03-24T14:38:40.958Z</updated>
     
     <summary type="html">
     
@@ -52,7 +52,7 @@
       
         
         
-          &lt;h1 id=&quot;中の人&quot;&gt;&lt;a href=&quot;#中の人&quot; class=&quot;headerlink&quot; title=&quot;中の人&quot;&gt;&lt;/a&gt;中の人&lt;/h1&gt;&lt;ul&gt;
+          &lt;h2 id=&quot;中の人&quot;&gt;&lt;a href=&quot;#中の人&quot; class=&quot;headerlink&quot; title=&quot;中の人&quot;&gt;&lt;/a&gt;中の人&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Kyoichi Iwasaki&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Delivery Data Scientist in
