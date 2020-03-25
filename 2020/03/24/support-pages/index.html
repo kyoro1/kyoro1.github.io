@@ -25,7 +25,7 @@
 <meta property="og:description" content="Hexoで参考にしたサイトまずは作ろう Node.js製の静的サイトジェネレータ「Hexo」で無料ブログ開発 vol.1 最初に見ると良いかもなサイト。記述が丁寧です。   hexoでatom.xmlを自動生成する方法 atom.xmlが空っぽじゃ恥ずかしい、、という時に見る感じかもですね。    Themes Themes いろんなテーマが選べます。   Hexoのテーマを変更する 変更時の手順">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-24T12:29:44.000Z">
-<meta property="article:modified_time" content="2020-03-25T14:18:27.262Z">
+<meta property="article:modified_time" content="2020-03-25T14:21:52.056Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="site maintenance">
 <meta name="twitter:card" content="summary">
@@ -148,9 +148,10 @@
 <li><p>deploy</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy -g</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>数式を入れたかったらココにある<a href="https://github.com/hexojs/hexo-math" target="_blank" rel="noopener">hexo-math</a>を使ってみた。裏でMathJaxを読んでる風:</p>
+<li><p>数式を入れたかったらココにある<a href="https://kbone-web.net/2019/01/28/tex-style-in-hexo/" target="_blank" rel="noopener">TeX style in Hexo</a>、もしくは元記事の<a href="https://nathaniel.blog/tutorials/make-hexo-support-math-again/" target="_blank" rel="noopener">Make Hexo Support Math Again</a>を参照。</p>
 </li>
 </ul>
+<p><a href="https://github.com/hexojs/hexo-math" target="_blank" rel="noopener">hexo-math</a>を使ってみた。裏でMathJaxを読んでる風ではありますが、いろいろ困難がありました。。<br>結果、<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ a+b&#x3D;c $$</span><br></pre></td></tr></table></figure><br>と書くと↓のようになります。</p>
 <script type="math/tex; mode=display">a+b=c</script>
       
     </div>
