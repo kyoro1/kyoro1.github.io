@@ -15,23 +15,23 @@
 <!-- End Google Analytics -->
 
   
-  <title>pytorch1 | Test</title>
+  <title>pytorch1 | Infer our lives with data</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="お仕事でpytorchを使うって言うので、個人的なメモのその１．環境として  pythonは3.7 pytorchは1.4.0環境はセットアップされた前提だとします。  AutoGradについて123456## まずはimportimport torch## Tensorを作りますtensor1 &#x3D; torch.Tensor([[1,2,3], [4,5,6]])tensor2 &#x3D; torch.T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pytorch1">
 <meta property="og:url" content="https://kyoro1.github.io/2020/04/01/pytorch1/index.html">
-<meta property="og:site_name" content="Test">
+<meta property="og:site_name" content="Infer our lives with data">
 <meta property="og:description" content="お仕事でpytorchを使うって言うので、個人的なメモのその１．環境として  pythonは3.7 pytorchは1.4.0環境はセットアップされた前提だとします。  AutoGradについて123456## まずはimportimport torch## Tensorを作りますtensor1 &#x3D; torch.Tensor([[1,2,3], [4,5,6]])tensor2 &#x3D; torch.T">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-01T13:33:52.000Z">
-<meta property="article:modified_time" content="2020-04-01T14:33:51.530Z">
+<meta property="article:modified_time" content="2020-04-01T14:36:56.809Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="pytorch, data science">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@kyoro1">
   
-    <link rel="alternate" href="/atom.xml" title="Test" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Infer our lives with data" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -59,7 +59,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Test</a>
+        <a href="/" id="logo">Infer our lives with data</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -140,7 +140,7 @@
 <script type="math/tex; mode=display">\frac{\partial}{\partial a_{ij}}output\_tensor</script><p>を計算しています。上記のように<code>output_tensor</code>は</p>
 <script type="math/tex; mode=display">output\_tensor = \frac{1}{6}\times(\sum_{i, j}a_{ij}b_{ij})</script><p>でしたから、例えば <script type="math/tex">a_{11}</script> に関して(偏)微分すると、</p>
 <script type="math/tex; mode=display">
-\frac{\partial}{\partial a_{11}}output\_tensor = \frac{1}{6}\times b_{11}=\frac{7}{6} = 1.166..</script><p>となり一致しました。今日はこの辺りにしておきましょうか。</p>
+\frac{\partial}{\partial a_{11}}output\_tensor = \frac{1}{6}\times b_{11}=\frac{7}{6} = 1.166..</script><p>となり一致しました。<code>Autograd</code>に辿り着いていませんが、今日はこの辺りにしておきましょうか。</p>
 
       
     </div>
