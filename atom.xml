@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Infer our lives with data</title>
   
-  <subtitle>around data science</subtitle>
+  <subtitle>topics around data science</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
