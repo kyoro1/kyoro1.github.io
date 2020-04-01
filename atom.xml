@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-03-25T13:52:21.881Z</updated>
+  <updated>2020-04-01T14:33:51.530Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pytorch1</title>
+    <link href="https://kyoro1.github.io/2020/04/01/pytorch1/"/>
+    <id>https://kyoro1.github.io/2020/04/01/pytorch1/</id>
+    <published>2020-04-01T13:33:52.000Z</published>
+    <updated>2020-04-01T14:33:51.530Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;お仕事で&lt;code&gt;pytorch&lt;/code&gt;を使うって言うので、個人的なメモのその１．環境として&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pythonは3.7&lt;/li&gt;
+&lt;li&gt;pytorchは1.4.0&lt;br&gt;環境はセットアップされた前提だとします。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="pytorch, data science" scheme="https://kyoro1.github.io/tags/pytorch-data-science/"/>
+    
+  </entry>
   
   <entry>
     <title>pmi-acp</title>
