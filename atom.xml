@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-04-01T14:36:56.809Z</updated>
+  <updated>2020-04-01T14:57:40.329Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -17,11 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>pytorch2</title>
+    <link href="https://kyoro1.github.io/2020/04/01/pytorch2/"/>
+    <id>https://kyoro1.github.io/2020/04/01/pytorch2/</id>
+    <published>2020-04-01T14:57:40.000Z</published>
+    <updated>2020-04-01T14:57:40.329Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>pytorch1</title>
     <link href="https://kyoro1.github.io/2020/04/01/pytorch1/"/>
     <id>https://kyoro1.github.io/2020/04/01/pytorch1/</id>
     <published>2020-04-01T13:33:52.000Z</published>
-    <updated>2020-04-01T14:36:56.809Z</updated>
+    <updated>2020-04-02T00:24:36.293Z</updated>
     
     <summary type="html">
     
@@ -42,7 +57,9 @@
     
     
     
-      <category term="pytorch, data science" scheme="https://kyoro1.github.io/tags/pytorch-data-science/"/>
+      <category term="pytorch" scheme="https://kyoro1.github.io/tags/pytorch/"/>
+    
+      <category term="data science" scheme="https://kyoro1.github.io/tags/data-science/"/>
     
   </entry>
   
