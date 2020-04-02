@@ -25,7 +25,7 @@
 <meta property="og:description" content="お仕事でpytorchを使うって言うので、個人的なメモのその１．環境として  pythonは3.7 pytorchは1.4.0環境はセットアップされた前提だとします。  AutoGradについて123456## まずはimportimport torch## Tensorを作りますtensor1 &#x3D; torch.Tensor([[1,2,3], [4,5,6]])tensor2 &#x3D; torch.T">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-01T13:33:52.000Z">
-<meta property="article:modified_time" content="2020-04-02T00:24:36.293Z">
+<meta property="article:modified_time" content="2020-04-02T09:18:41.106Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="pytorch">
 <meta property="article:tag" content="data science">
@@ -143,7 +143,7 @@
 <script type="math/tex; mode=display">\frac{\partial}{\partial a_{ij}}output\_tensor</script><p>を計算しています。上記のように<code>output_tensor</code>は</p>
 <script type="math/tex; mode=display">output\_tensor = \frac{1}{6}\times(\sum_{i, j}a_{ij}b_{ij})</script><p>でしたから、例えば <script type="math/tex">a_{11}</script> に関して(偏)微分すると、</p>
 <script type="math/tex; mode=display">
-\frac{\partial}{\partial a_{11}}output\_tensor = \frac{1}{6}\times b_{11}=\frac{7}{6} = 1.166..</script><p>となり一致しました。<code>Autograd</code>に辿り着いていませんが、今日はこの辺りにしておきましょうか。</p>
+\frac{\partial}{\partial a_{11}}output\_tensor = \frac{1}{6}\times b_{11}=\frac{7}{6} = 1.166..</script><p>となり一致しました。</p>
 
       
     </div>
@@ -159,15 +159,6 @@
   
     
 <nav id="article-nav">
-  
-    <a href="/2020/04/01/pytorch2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          pytorch2
-        
-      </div>
-    </a>
   
   
     <a href="/2020/03/25/pmi-acp/" id="article-nav-older" class="article-nav-link-wrap">
@@ -214,10 +205,6 @@
       <ul>
         
           <li>
-            <a href="/2020/04/01/pytorch2/">pytorch2</a>
-          </li>
-        
-          <li>
             <a href="/2020/04/01/pytorch1/">pytorch1</a>
           </li>
         
@@ -231,6 +218,10 @@
         
           <li>
             <a href="/2020/03/24/about/">about</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/24/hello-world/">Hello World</a>
           </li>
         
       </ul>
