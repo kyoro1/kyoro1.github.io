@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://kyoro1.github.io/images/scatter000.png">
 <meta property="og:image" content="https://kyoro1.github.io/images/scatter001.png">
 <meta property="article:published_time" content="2020-04-02T13:29:00.000Z">
-<meta property="article:modified_time" content="2020-04-02T15:58:45.919Z">
+<meta property="article:modified_time" content="2020-04-02T16:03:21.039Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="pytorch">
 <meta property="article:tag" content="data science">
@@ -134,7 +134,7 @@
 <p>こうやって計算させると、</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">w, b</span><br><span class="line"><span class="comment">#(tensor([[1.9053]], requires_grad=True), tensor([3.4280], requires_grad=True))</span></span><br></pre></td></tr></table></figure>
 <p>なので、元の値 <script type="math/tex">W=2, b=3</script> にそれなりに近い値が求められました。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 図示用に変形</span></span><br><span class="line">x_train_tensor = torch.from_numpy(X)</span><br><span class="line">predicted_in_tensor = x_train_tensor.mm(w) + b</span><br><span class="line">predicted = predicted_in_tensor.detach().numpy()</span><br><span class="line"></span><br><span class="line"><span class="comment">## 図示</span></span><br><span class="line">plt.scatter(X, y, label=<span class="string">'original data'</span>, s=<span class="number">20</span>, c=<span class="string">'g'</span>)</span><br><span class="line">plt.plot(X, predicted, label=<span class="string">'fitted line'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 図示用に変形</span></span><br><span class="line">x_train_tensor = torch.from_numpy(X)</span><br><span class="line">predicted_in_tensor = x_train_tensor.mm(w) + b</span><br><span class="line">predicted = predicted_in_tensor.detach().numpy()</span><br><span class="line"></span><br><span class="line"><span class="comment">## 図示</span></span><br><span class="line">plt.scatter(X, y, label=<span class="string">'original data'</span>, s=<span class="number">20</span>, c=<span class="string">'g'</span>)</span><br><span class="line">plt.plot(X, predicted, label=<span class="string">'fitted line'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
 <p><img src="/images/scatter001.png" alt="元データと予測値を比較(散布図)"></p>
 
       
