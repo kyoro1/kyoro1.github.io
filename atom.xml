@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-04-02T10:37:06.345Z</updated>
+  <updated>2020-04-02T10:41:00.757Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>pytorch1</title>
-    <link href="https://kyoro1.github.io/2020/04/01/pytorch1/"/>
-    <id>https://kyoro1.github.io/2020/04/01/pytorch1/</id>
+    <title>Autogradを試す</title>
+    <link href="https://kyoro1.github.io/2020/04/01/Autograd%E3%82%92%E8%A9%A6%E3%81%99/"/>
+    <id>https://kyoro1.github.io/2020/04/01/Autograd%E3%82%92%E8%A9%A6%E3%81%99/</id>
     <published>2020-04-01T13:33:52.000Z</published>
-    <updated>2020-04-02T10:37:06.345Z</updated>
+    <updated>2020-04-02T10:41:00.757Z</updated>
     
     <summary type="html">
     
