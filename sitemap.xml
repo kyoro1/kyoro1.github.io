@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kyoro1.github.io/2020/04/03/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B-1/</loc>
+    
+    <lastmod>2020-04-02T15:59:14.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kyoro1.github.io/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/</loc>
+    
+    <lastmod>2020-04-02T15:58:45.919Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kyoro1.github.io/2020/04/01/Autograd%E3%82%92%E8%A9%A6%E3%81%99/</loc>
     
     <lastmod>2020-04-02T11:02:42.635Z</lastmod>
