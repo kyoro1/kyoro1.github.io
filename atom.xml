@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-04-01T14:57:40.329Z</updated>
+  <updated>2020-04-02T09:18:41.106Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -15,21 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>pytorch2</title>
-    <link href="https://kyoro1.github.io/2020/04/01/pytorch2/"/>
-    <id>https://kyoro1.github.io/2020/04/01/pytorch2/</id>
-    <published>2020-04-01T14:57:40.000Z</published>
-    <updated>2020-04-01T14:57:40.329Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>pytorch1</title>
