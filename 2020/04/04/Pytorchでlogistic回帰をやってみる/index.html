@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161733173-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161733173-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Pytorchでlogistic回帰をやってみる | Infer our lives with data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="設定例によって設定から。今回はみんな大好きirisで試します。アヤメ 123456789101112import torchimport numpy as npimport pandas as pdfrom sklearn.datasets import load_irisimport torchimport torch.nn as nnfrom torch.autograd import Var">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorchでlogistic回帰をやってみる">
+<meta property="og:url" content="https://kyoro1.github.io/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/index.html">
+<meta property="og:site_name" content="Infer our lives with data">
+<meta property="og:description" content="設定例によって設定から。今回はみんな大好きirisで試します。アヤメ 123456789101112import torchimport numpy as npimport pandas as pdfrom sklearn.datasets import load_irisimport torchimport torch.nn as nnfrom torch.autograd import Var">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kyoro1.github.io/images/loss_transition_logistic_regression.png">
+<meta property="og:image" content="https://kyoro1.github.io/images/accuracy_logistic_regression.png">
+<meta property="article:published_time" content="2020-04-04T01:30:21.000Z">
+<meta property="article:modified_time" content="2020-04-04T06:36:26.376Z">
+<meta property="article:author" content="Kyoichi Iwasaki">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="data science">
+<meta property="article:tag" content="classification">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kyoro1.github.io/images/loss_transition_logistic_regression.png">
+<meta name="twitter:creator" content="@kyoro1">
+  
+    <link rel="alternate" href="/atom.xml" title="Infer our lives with data" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Infer our lives with data</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">topics around data science</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://kyoro1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Pytorchでlogistic回帰をやってみる" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/" class="article-date">
+  <time class="dt-published" datetime="2020-04-04T01:30:21.000Z" itemprop="datePublished">2020-04-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Pytorchでlogistic回帰をやってみる
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><p>例によって設定から。今回はみんな大好き<code>iris</code>で試します。<br>アヤメ</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<h2 id="データのインポート"><a href="#データのインポート" class="headerlink" title="データのインポート"></a>データのインポート</h2><p>まずは読み込んで、、、<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## irisのデータセットのload</span></span><br><span class="line">iris = load_iris()</span><br></pre></td></tr></table></figure></p>
+<p>どんなデータだったかみたい場合は、<code>iris.DESCR</code>で確認しましょう。<code>print()</code>を使った方が読みやすいと思います。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">print(iris.DESCR)</span><br><span class="line"><span class="comment">#.. _iris_dataset:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#Iris plants dataset</span></span><br><span class="line"><span class="comment">#--------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#**Data Set Characteristics:**</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#    :Number of Instances: 150 (50 in each of three classes)</span></span><br><span class="line"><span class="comment">#    :Number of Attributes: 4 numeric, predictive attributes and the class</span></span><br><span class="line"><span class="comment">#    :Attribute Information:</span></span><br><span class="line"><span class="comment">#        - sepal length in cm</span></span><br><span class="line"><span class="comment">#        - sepal width in cm</span></span><br><span class="line"><span class="comment">#        - petal length in cm</span></span><br><span class="line"><span class="comment">#        - petal width in cm</span></span><br><span class="line"><span class="comment">#        - class:</span></span><br><span class="line"><span class="comment">#                - Iris-Setosa</span></span><br><span class="line"><span class="comment">#                - Iris-Versicolour</span></span><br><span class="line"><span class="comment">#                - Iris-Virginica</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Setosa</code>, <code>Versicolour</code>, <code>Virginica</code>の3種別あるで、多クラス分類ですね。</p>
+<h2 id="データをpytorchが読めるようにする"><a href="#データをpytorchが読めるようにする" class="headerlink" title="データをpytorchが読めるようにする"></a>データをpytorchが読めるようにする</h2><p>中身を見てみましょうか。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 説明変数用(numpy形式で格納)</span></span><br><span class="line">iris.data[:<span class="number">5</span>] <span class="comment">## はじめの5行分だけ眺めてみます</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#array([[5.1, 3.5, 1.4, 0.2],</span></span><br><span class="line"><span class="comment">#       [4.9, 3. , 1.4, 0.2],</span></span><br><span class="line"><span class="comment">#       [4.7, 3.2, 1.3, 0.2],</span></span><br><span class="line"><span class="comment">#       [4.6, 3.1, 1.5, 0.2],</span></span><br><span class="line"><span class="comment">#       [5. , 3.6, 1.4, 0.2]])</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## こっちは目的変数用(こっちもnumpy形式ですね)</span></span><br><span class="line">iris.target</span><br><span class="line"><span class="comment">#array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,</span></span><br><span class="line"><span class="comment">#       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,</span></span><br><span class="line"><span class="comment">#       0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span></span><br><span class="line"><span class="comment">#       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span></span><br><span class="line"><span class="comment">#       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,</span></span><br><span class="line"><span class="comment">#       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,</span></span><br><span class="line"><span class="comment">#       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])</span></span><br></pre></td></tr></table></figure>
+<p>値が<code>0, 1, 2</code>という値ですね。<br>多クラス分類を考える時、このようなラベル名をそのまま当てはめる場合とベクトルに直さないとライブラリが使えなくなったりするので、要注意ですね。つまり、</p>
+<script type="math/tex; mode=display">0 \to (1, 0, 0) , 1 \to (0, 1, 0)</script><p>のようにベクトル化することが必要な場合とがあります。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_X = torch.Tensor(iris.data)       <span class="comment">## torch.Tensor型: Pytorch版のnumpy形式</span></span><br><span class="line">train_y = torch.LongTensor(iris.target) <span class="comment">## 目的変数が上記のような0,1,2のような整数型の場合はtorch.LongTensorを利用(無邪気にtorch.Tensorとすると学習の時に怒られます)</span></span><br></pre></td></tr></table></figure>
+<h2 id="モデルの骨格"><a href="#モデルの骨格" class="headerlink" title="モデルの骨格"></a>モデルの骨格</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## まずはNeural Networkを使うよってことでnn.Moduleを継承します</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Net</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="comment">## 個々で</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">## nn.Moduleを継承するよってことで。</span></span><br><span class="line">        super(Net, self).__init__()</span><br><span class="line">        <span class="comment">## 第1層:4つの変数を100個の変数に展開します</span></span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">4</span>, <span class="number">100</span>)</span><br><span class="line">        <span class="comment">## 第2層:100個→50個に</span></span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">100</span>, <span class="number">50</span>)</span><br><span class="line">        <span class="comment">## 第3層:50個を最終的なラベルの数3に分類させます</span></span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">50</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="comment">## 第1層と第2層をreluをかました後に繋ぎます</span></span><br><span class="line">        x = F.relu(self.fc1(x))</span><br><span class="line">        <span class="comment">## 第2層と第3層をreluをかました後に繋ぎます</span></span><br><span class="line">        x = F.relu(self.fc2(x))</span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="comment">## 最後にlog softmax(ココは普通にF.softmax()に変えても処理は回ります。)で出力</span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(x, dim = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>F.log_softmax()</code>は、数学的には<code>log(softmax())</code>と同等のようですが、<code>softmax()</code>の中身が<script type="math/tex">0</script>になってしまうと<script type="math/tex">log(0)=-\infty</script>なので計算出来ません。ということで、<code>F.log_softmax</code>は<a href="https://pytorch.org/docs/master/_modules/torch/nn/functional.html#log_softmax" target="_blank" rel="noopener">別の実装によりその状況を避けているようで</a></li>
+</ul>
+<h2 id="モデルの骨格が出来たのでメモリに載せます-インスタンス化"><a href="#モデルの骨格が出来たのでメモリに載せます-インスタンス化" class="headerlink" title="モデルの骨格が出来たのでメモリに載せます(インスタンス化)"></a>モデルの骨格が出来たのでメモリに載せます(インスタンス化)</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model = Net()</span><br><span class="line">print(model)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Net(</span></span><br><span class="line"><span class="comment">#  (fc1): Linear(in_features=4, out_features=100, bias=True)</span></span><br><span class="line"><span class="comment">#  (fc2): Linear(in_features=100, out_features=50, bias=True)</span></span><br><span class="line"><span class="comment">#  (fc3): Linear(in_features=50, out_features=3, bias=True)</span></span><br><span class="line"><span class="comment">#)</span></span><br></pre></td></tr></table></figure>
+<h2 id="学習させます！"><a href="#学習させます！" class="headerlink" title="学習させます！"></a>学習させます！</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 誤差の収束方法をSGD(Stochastic Gradient Descent), lr(learning rate)を設定</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.02</span>)</span><br><span class="line"><span class="comment">## エポック数(何回学習させるか)</span></span><br><span class="line">epochs = <span class="number">1000</span></span><br><span class="line"><span class="comment">## 後の可視化用に取っておく</span></span><br><span class="line">loss_log, accuracy_log = [], []</span><br><span class="line"></span><br><span class="line">data, target = Variable(train_X), Variable(train_y)</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(epochs):</span><br><span class="line">    <span class="comment">## pytorchでは勾配を蓄積する仕組みなので更新前に初期化しておきます</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    <span class="comment">## feed forward(つまり予測させます)</span></span><br><span class="line">    output = model(data)</span><br><span class="line">    <span class="comment">## 予実差からの誤差を決めます。nll_lossは、Negative Log Likelihood(負の対数尤度)ですね。</span></span><br><span class="line">    loss = F.nll_loss(output, target)</span><br><span class="line"></span><br><span class="line">    <span class="comment">## Back Propagation</span></span><br><span class="line">    loss.backward()</span><br><span class="line">    <span class="comment">## 各層内のパラメータの更新</span></span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 正解率の計算</span></span><br><span class="line">    prediction = output.data.max(<span class="number">1</span>)[<span class="number">1</span>]</span><br><span class="line">    accuracy = prediction.eq(target.data).sum().numpy() / len(iris.data)</span><br><span class="line"></span><br><span class="line">    <span class="comment">## 記録を取っておきます</span></span><br><span class="line">    loss_log.append(loss.item())</span><br><span class="line">    accuracy_log.append(accuracy)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> epoch % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">'Train Step: &#123;&#125;\tLoss: &#123;:.3f&#125;\tAccuracy: &#123;:.3f&#125;'</span>.format(epoch, loss.data.item(), accuracy))</span><br><span class="line"></span><br><span class="line"><span class="comment">#Train Step: 0	Loss: 1.092	Accuracy: 0.360</span></span><br><span class="line"><span class="comment">#Train Step: 100	Loss: 0.366	Accuracy: 0.960</span></span><br><span class="line"><span class="comment">#Train Step: 200	Loss: 0.203	Accuracy: 0.973</span></span><br><span class="line"><span class="comment">#Train Step: 300	Loss: 0.133	Accuracy: 0.980</span></span><br><span class="line"><span class="comment">#Train Step: 400	Loss: 0.105	Accuracy: 0.980</span></span><br><span class="line"><span class="comment">#Train Step: 500	Loss: 0.091	Accuracy: 0.987</span></span><br><span class="line"><span class="comment">#Train Step: 600	Loss: 0.083	Accuracy: 0.980</span></span><br><span class="line"><span class="comment">#Train Step: 700	Loss: 0.077	Accuracy: 0.980</span></span><br><span class="line"><span class="comment">#Train Step: 800	Loss: 0.073	Accuracy: 0.980</span></span><br><span class="line"><span class="comment">#Train Step: 900	Loss: 0.071	Accuracy: 0.980</span></span><br></pre></td></tr></table></figure>
+<h2 id="学習過程を図示します"><a href="#学習過程を図示します" class="headerlink" title="学習過程を図示します"></a>学習過程を図示します</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.figure()</span><br><span class="line">plt.plot(range(epochs), loss_log, label=<span class="string">'train loss'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">'Loss transition via epochs'</span>)</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(range(epochs), accuracy_log, label=<span class="string">'accuracy'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">'Accuracy transition via epochs'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/loss_transition_logistic_regression.png" alt="Lossの変化"><br><img src="/images/accuracy_logistic_regression.png" alt="Accuracyの変化"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kyoro1.github.io/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/" data-id="ck8kyjkr90000x8sleat46tdy" data-title="Pytorchでlogistic回帰をやってみる" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/classification/" rel="tag">classification</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-science/" rel="tag">data science</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Pytorchで単回帰やってみる</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/classification/" style="font-size: 10px;">classification</a> <a href="/tags/data-science/" style="font-size: 20px;">data science</a> <a href="/tags/pmi-acp/" style="font-size: 10px;">pmi-acp</a> <a href="/tags/pytorch/" style="font-size: 20px;">pytorch</a> <a href="/tags/self-introduction/" style="font-size: 10px;">self introduction</a> <a href="/tags/simple-regression/" style="font-size: 10px;">simple regression</a> <a href="/tags/site-maintenance/" style="font-size: 10px;">site maintenance</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">Pytorchでlogistic回帰をやってみる</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">Pytorchで単回帰やってみる</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/01/Autograd%E3%82%92%E8%A9%A6%E3%81%99/">Autogradを試す</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/pmi-acp/">pmi-acp</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/24/support-pages/">support_pages</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Kyoichi Iwasaki<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
