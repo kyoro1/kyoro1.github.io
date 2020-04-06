@@ -26,7 +26,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://qiita-image-store.s3.amazonaws.com/0/80539/67a23748-4927-81b2-50b3-346694368b03.png">
 <meta property="article:published_time" content="2020-04-06T14:37:14.000Z">
-<meta property="article:modified_time" content="2020-04-06T14:39:52.516Z">
+<meta property="article:modified_time" content="2020-04-06T14:52:41.438Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="Poisson distribution">
@@ -133,8 +133,7 @@
 <p>1回あたり1%の確率で当たりが出るガチャを連続100回引いた場合、1回も当たりが出ないことがある？！</p>
 </blockquote>
 <p>を定量化してみます。これは、要は100回連続でハズレを引き続けることに相当するので</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1-0.01)^&#123;100&#125;&#x3D;0.99^&#123;100&#125;</span><br></pre></td></tr></table></figure>
-<p>を計算させればいいですね。pythonで計算させると、</p>
+<script type="math/tex; mode=display">(1-0.01)^{100}=0.99^{100}</script><p>を計算させればいいですね。pythonで計算させると、</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0.99</span>**<span class="number">100</span></span><br><span class="line"><span class="number">0.3660323412732292</span></span><br></pre></td></tr></table></figure>
 <p>なので<code>0.366≒36.6%</code>程度1回も当たらないことになりますね（残念）。これは、元記事の</p>
 <blockquote>
@@ -144,8 +143,10 @@
 <h1 id="数学的にちゃんと考える"><a href="#数学的にちゃんと考える" class="headerlink" title="数学的にちゃんと考える"></a>数学的にちゃんと考える</h1><p>今回の場合、非復元抽出で100回連続試行しますので、数学では「二項分布」が相当します。</p>
 <p>よくある話が「コインの裏、もしくは表が100回中何回出るか？」みたいな文脈ですが、オモテウラの出方がイビツで「表が出る確率が0.01、裏が出る確率が0.99」のような状況です。（どんなコインか見てみたいものですが、、）</p>
 <h2 id="定式化"><a href="#定式化" class="headerlink" title="定式化"></a>定式化</h2><p>そうすると、100回の非復元抽出で<code>r</code>回当たりが出る確率は</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">&#123;&#125;_&#123;100&#125; C _r\times 0.01^r\times (1-0.01)^&#123;100-r&#125;</span><br><span class="line">\end&#123;eqnarray&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="幾つか計算してみる"><a href="#幾つか計算してみる" class="headerlink" title="幾つか計算してみる"></a>幾つか計算してみる</h2><h3 id="r-1のとき"><a href="#r-1のとき" class="headerlink" title="r=1のとき"></a><code>r=1</code>のとき</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">&#123;&#125;_&#123;100&#125; C_1\times 0.01\times (1-0.01)^&#123;99&#125; &#x3D; 100\times 0.01\times 0.99^&#123;99&#125;&#x3D;0.3697...</span><br><span class="line">\end&#123;eqnarray&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+{}_{100} C _r\times 0.01^r\times (1-0.01)^{100-r}
+\end{eqnarray}</script><h2 id="幾つか計算してみる"><a href="#幾つか計算してみる" class="headerlink" title="幾つか計算してみる"></a>幾つか計算してみる</h2><h3 id="r-1のとき"><a href="#r-1のとき" class="headerlink" title="r=1のとき"></a><code>r=1</code>のとき</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">&#123;&#125;_&#123;100&#125; C_1\times 0.01\times (1-0.01)^&#123;99&#125; &#x3D; 100\times 0.01\times 0.99^&#123;99&#125;&#x3D;0.3697...</span><br><span class="line">\end&#123;eqnarray&#125;</span><br></pre></td></tr></table></figure>
 <p>⇒大体<code>0.370</code>くらいなんで、1回も当たりを引かない確率と、1回当たりを引く確率が大体一緒なんですね。</p>
 <h3 id="r-2のとき"><a href="#r-2のとき" class="headerlink" title="r=2のとき"></a><code>r=2</code>のとき</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">&#123;&#125;_&#123;100&#125; C_2\times 0.01^2\times (1-0.01)^&#123;98&#125; &#x3D; 4950\times 0.01^2\times 0.99^&#123;98&#125;&#x3D;0.1849...</span><br><span class="line">\end&#123;eqnarray&#125;</span><br></pre></td></tr></table></figure>
 <p>⇒今度は<code>0.18</code>くらいなので、いきなり確率が半減してしまいます、、、</p>
