@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://kyoro1.github.io/images/loss_transition_logistic_regression.png">
 <meta property="og:image" content="https://kyoro1.github.io/images/accuracy_logistic_regression.png">
 <meta property="article:published_time" content="2020-04-04T01:30:21.000Z">
-<meta property="article:modified_time" content="2020-04-06T14:45:31.894Z">
+<meta property="article:modified_time" content="2020-04-06T14:51:01.500Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="pytorch">
 <meta property="article:tag" content="data science">
@@ -119,7 +119,7 @@
       
         <h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><p>例によって設定から。今回はみんな大好き<code>iris</code>で試します。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=12&l=ur1&category=amazonstudent&banner=09028NTWEEQWX1H30B82&f=ifr&linkID=05426b6f29b2a7f5a71844c13386156f&t=languagenoteb-22&tracking_id=languagenoteb-22" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=12&l=ur1&category=audible&banner=04TW4TSNDNB96FMCBT82&f=ifr&linkID=2f105cc326034cd49ba8aa17d89bf4cb&t=languagenoteb-22&tracking_id=languagenoteb-22" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
 
 <a id="more"></a>
 <h2 id="データのインポート"><a href="#データのインポート" class="headerlink" title="データのインポート"></a>データのインポート</h2><p>まずは読み込んで、、、<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## irisのデータセットのload</span></span><br><span class="line">iris = load_iris()</span><br></pre></td></tr></table></figure></p>
