@@ -91,6 +91,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Cloudが作りたくなったら。" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/" class="article-date">
+  <time class="dt-published" datetime="2020-04-06T14:01:06.000Z" itemprop="datePublished">2020-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/">Word Cloudが作りたくなったら。</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="やりたいこと"><a href="#やりたいこと" class="headerlink" title="やりたいこと"></a>やりたいこと</h1><ul>
+<li>極力少ないステップでWord Cloudを作ること。(1度作ってしまえば充分という時にどうぞ)</li>
+</ul>
+<h2 id="ポイント"><a href="#ポイント" class="headerlink" title="ポイント"></a>ポイント</h2><ul>
+<li>形態素解析を <code>janome</code>で実行<ul>
+<li><code>MeCab</code>だと<code>python</code>から見えるようにするための設定が必要</li>
+</ul>
+</li>
+<li>Word Cloudに利用するフォントの設定</li>
+</ul>
+<h1 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h1><ul>
+<li>Windows 10</li>
+<li>python 3.7</li>
+</ul>
+<h1 id="Library-setup"><a href="#Library-setup" class="headerlink" title="Library setup"></a>Library setup</h1><p>Anacondaを入れていれば、こんなところで大丈夫でしょうかね：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install janome</span><br><span class="line">pip install wordcloud</span><br></pre></td></tr></table></figure>
+<h1 id="環境設定"><a href="#環境設定" class="headerlink" title="環境設定"></a>環境設定</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> janome.tokenizer <span class="keyword">import</span> Tokenizer</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br></pre></td></tr></table></figure>
+<h1 id="データ読み込みから下準備"><a href="#データ読み込みから下準備" class="headerlink" title="データ読み込みから下準備"></a>データ読み込みから下準備</h1><ul>
+<li>こんなデータ(<code>sample.csv</code>)を用意します。csvと言っておきつつ、カンマは使っていませんが、、、</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ライオンはパンダかもしれない</span><br><span class="line">いや、そんなことはない </span><br><span class="line"> :</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## データ読み込み</span></span><br><span class="line">df = pd.read_csv(<span class="string">'sample.csv'</span>, header=<span class="literal">None</span>)</span><br><span class="line"><span class="comment">## タイトルを付与</span></span><br><span class="line">df.colums = [<span class="string">'sentences'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">## 関数群の定義</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_nouns</span><span class="params">(sentence, noun_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> token <span class="keyword">in</span> t.tokenize(sentence):</span><br><span class="line">        split_token = token.part_of_speech.split(<span class="string">','</span>)</span><br><span class="line">        <span class="comment">## 一般名詞を抽出</span></span><br><span class="line">        <span class="keyword">if</span> split_token[<span class="number">0</span>] == <span class="string">'名詞'</span> <span class="keyword">and</span> split_token[<span class="number">1</span>] == <span class="string">'一般'</span>:</span><br><span class="line">            noun_list.append(token.surface)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">depict_word_cloud</span><span class="params">(noun_list)</span>:</span></span><br><span class="line">    <span class="comment">## 名詞リストの要素を空白区切りにする(word_cloudの仕様)</span></span><br><span class="line">    noun_space = <span class="string">' '</span>.join(map(str, noun_list))</span><br><span class="line">    <span class="comment">## word cloudの設定(フォントの設定)</span></span><br><span class="line">    wc = WordCloud(background_color=<span class="string">"white"</span>, font_path=<span class="string">r"C:/WINDOWS/Fonts/msgothic.ttc"</span>, width=<span class="number">300</span>,height=<span class="number">300</span>)</span><br><span class="line">    wc.generate(noun_space)</span><br><span class="line">    <span class="comment">## 出力画像の大きさの指定</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line">    <span class="comment">## 目盛りの削除</span></span><br><span class="line">    plt.tick_params(labelbottom=<span class="literal">False</span>,</span><br><span class="line">                    labelleft=<span class="literal">False</span>,</span><br><span class="line">                    labelright=<span class="literal">False</span>,</span><br><span class="line">                    labeltop=<span class="literal">False</span>,</span><br><span class="line">                   length=<span class="number">0</span>)</span><br><span class="line">    <span class="comment">## word cloudの表示</span></span><br><span class="line">    plt.imshow(wc)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h1 id="準備が整ったところで実行"><a href="#準備が整ったところで実行" class="headerlink" title="準備が整ったところで実行"></a>準備が整ったところで実行</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 形態素解析の準備</span></span><br><span class="line">t = Tokenizer()</span><br><span class="line"></span><br><span class="line">noun_list = []</span><br><span class="line"><span class="keyword">for</span> sentence <span class="keyword">in</span> list(df[<span class="string">'sentences'</span>]):</span><br><span class="line">    get_nouns(sentence, noun_list)</span><br><span class="line"></span><br><span class="line">depict_word_cloud(noun_list)</span><br></pre></td></tr></table></figure>
+<h1 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h1><p>こんなのが出れば成功：<br><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/80539/07387425-72a9-734b-1fa7-6873c48a5131.png" alt="image.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kyoro1.github.io/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/" data-id="ck8ojnt5d000040sl8bm4edin" data-title="Word Cloudが作りたくなったら。" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/janome/" rel="tag">janome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wordcloud/" rel="tag">wordcloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Pytorchでlogistic回帰をやってみる" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/" class="article-date">
@@ -541,7 +605,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/data-science/" style="font-size: 20px;">data science</a> <a href="/tags/logistic-regression/" style="font-size: 10px;">logistic regression</a> <a href="/tags/multi-class-classification/" style="font-size: 10px;">multi-class classification</a> <a href="/tags/pmi-acp/" style="font-size: 10px;">pmi-acp</a> <a href="/tags/pytorch/" style="font-size: 20px;">pytorch</a> <a href="/tags/self-introduction/" style="font-size: 10px;">self introduction</a> <a href="/tags/simple-regression/" style="font-size: 10px;">simple regression</a> <a href="/tags/site-maintenance/" style="font-size: 10px;">site maintenance</a>
+      <a href="/tags/data-science/" style="font-size: 20px;">data science</a> <a href="/tags/janome/" style="font-size: 10px;">janome</a> <a href="/tags/logistic-regression/" style="font-size: 10px;">logistic regression</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/multi-class-classification/" style="font-size: 10px;">multi-class classification</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/pmi-acp/" style="font-size: 10px;">pmi-acp</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 20px;">pytorch</a> <a href="/tags/self-introduction/" style="font-size: 10px;">self introduction</a> <a href="/tags/simple-regression/" style="font-size: 10px;">simple regression</a> <a href="/tags/site-maintenance/" style="font-size: 10px;">site maintenance</a> <a href="/tags/wordcloud/" style="font-size: 10px;">wordcloud</a>
     </div>
   </div>
 
@@ -563,6 +627,10 @@
       <ul>
         
           <li>
+            <a href="/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/">Word Cloudが作りたくなったら。</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">pytorchでlogistic回帰をやってみる</a>
           </li>
         
@@ -576,10 +644,6 @@
         
           <li>
             <a href="/2020/03/25/pmi-acp/">pmi-acp</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/24/support-pages/">support_pages</a>
           </li>
         
       </ul>

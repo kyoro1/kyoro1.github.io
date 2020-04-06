@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-04-05T09:07:01.224Z</updated>
+  <updated>2020-04-06T14:02:19.952Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Word Cloudが作りたくなったら。</title>
+    <link href="https://kyoro1.github.io/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/"/>
+    <id>https://kyoro1.github.io/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/</id>
+    <published>2020-04-06T14:01:06.000Z</published>
+    <updated>2020-04-06T14:02:19.952Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;やりたいこと&quot;&gt;&lt;a href=&quot;#やりたいこと&quot; class=&quot;headerlink&quot; title=&quot;やりたいこと&quot;&gt;&lt;/a&gt;やりたいこと&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;極力少ないステップでWord
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="python" scheme="https://kyoro1.github.io/tags/python/"/>
+    
+      <category term="wordcloud" scheme="https://kyoro1.github.io/tags/wordcloud/"/>
+    
+      <category term="janome" scheme="https://kyoro1.github.io/tags/janome/"/>
+    
+      <category term="pandas" scheme="https://kyoro1.github.io/tags/pandas/"/>
+    
+      <category term="matplotlib" scheme="https://kyoro1.github.io/tags/matplotlib/"/>
+    
+  </entry>
   
   <entry>
     <title>pytorchでlogistic回帰をやってみる</title>
