@@ -17,17 +17,17 @@
   
   <title>Pytorchで単回帰やってみる | Infer our lives with data</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="先日の記事を元に、単回帰(simple regression)をpytorchで書いてみます。 当然ですが、型とか結構大事。。 まずは設定12345import torchfrom numpy.random import *import numpy as npimport matplotlib.pyplot as plt 次にデータを作ってみます話をわかりやすくするために、 y &#x3D; 2x + 3に">
+  <meta name="description" content="先日の記事を元に、単回帰(simple regression)をpytorchで書いてみます。 当然ですが、型とか結構大事。。 まずは設定12345import torchfrom numpy.random import *import numpy as npimport matplotlib.pyplot as plt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pytorchで単回帰やってみる">
 <meta property="og:url" content="https://kyoro1.github.io/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/index.html">
 <meta property="og:site_name" content="Infer our lives with data">
-<meta property="og:description" content="先日の記事を元に、単回帰(simple regression)をpytorchで書いてみます。 当然ですが、型とか結構大事。。 まずは設定12345import torchfrom numpy.random import *import numpy as npimport matplotlib.pyplot as plt 次にデータを作ってみます話をわかりやすくするために、 y &#x3D; 2x + 3に">
+<meta property="og:description" content="先日の記事を元に、単回帰(simple regression)をpytorchで書いてみます。 当然ですが、型とか結構大事。。 まずは設定12345import torchfrom numpy.random import *import numpy as npimport matplotlib.pyplot as plt">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kyoro1.github.io/images/scatter000.png">
 <meta property="og:image" content="https://kyoro1.github.io/images/scatter001.png">
 <meta property="article:published_time" content="2020-04-02T13:29:00.000Z">
-<meta property="article:modified_time" content="2020-04-02T22:24:20.804Z">
+<meta property="article:modified_time" content="2020-04-06T14:17:05.657Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="pytorch">
 <meta property="article:tag" content="data science">
@@ -119,6 +119,9 @@
         <p><a href="https://kyoro1.github.io/2020/04/01/Autograd%E3%82%92%E8%A9%A6%E3%81%99/">先日の記事</a>を元に、単回帰(simple regression)を<code>pytorch</code>で書いてみます。</p>
 <p>当然ですが、型とか結構大事。。</p>
 <h2 id="まずは設定"><a href="#まずは設定" class="headerlink" title="まずは設定"></a>まずは設定</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=13&l=ur1&category=foreignpicturebooks&banner=0Y5SE4XTN4JWXJPEERG2&f=ifr&linkID=3e87b43a3a1f729737ebcbfe67105be9&t=languagenoteb-22&tracking_id=languagenoteb-22" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+
+<a id="more"></a>
 <h2 id="次にデータを作ってみます"><a href="#次にデータを作ってみます" class="headerlink" title="次にデータを作ってみます"></a>次にデータを作ってみます</h2><p>話をわかりやすくするために、</p>
 <script type="math/tex; mode=display">y = 2x + 3</script><p>に少し乱数を振っておきましょうか。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X = np.array([[x * <span class="number">10</span>] <span class="keyword">for</span> x <span class="keyword">in</span> rand(<span class="number">20</span>)], dtype=<span class="string">'float32'</span>)</span><br><span class="line">y = np.array([<span class="number">2</span> * x[<span class="number">0</span>] + <span class="number">3</span> + <span class="number">0.3</span> * randn(<span class="number">1</span>, <span class="number">1</span>)[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> X], dtype=<span class="string">'float32'</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(X, y)</span><br></pre></td></tr></table></figure>
@@ -270,6 +273,21 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

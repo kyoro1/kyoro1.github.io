@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kyoro1.github.io/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/</loc>
+    
+    <lastmod>2020-04-06T14:17:05.657Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kyoro1.github.io/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/</loc>
     
     <lastmod>2020-04-06T14:13:12.827Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://kyoro1.github.io/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/</loc>
     
     <lastmod>2020-04-06T14:02:19.952Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kyoro1.github.io/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/</loc>
-    
-    <lastmod>2020-04-02T22:24:20.804Z</lastmod>
     
   </url>
   
