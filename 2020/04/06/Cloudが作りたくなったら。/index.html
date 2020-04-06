@@ -17,16 +17,16 @@
   
   <title>Word Cloudが作りたくなったら。 | Infer our lives with data</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="やりたいこと 極力少ないステップでWord Cloudを作ること。(1度作ってしまえば充分という時にどうぞ)  ポイント 形態素解析を janomeで実行 MeCabだとpythonから見えるようにするための設定が必要   Word Cloudに利用するフォントの設定  環境 Windows 10 python 3.7  Library setupAnacondaを入れていれば、こんなところで大丈">
+  <meta name="description" content="やりたいこと 極力少ないステップでWord Cloudを作ること。(1度作ってしまえば充分という時にどうぞ)  ポイント 形態素解析を janomeで実行 MeCabだとpythonから見えるようにするための設定が必要   Word Cloudに利用するフォントの設定  環境 Windows 10 python 3.7">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Word Cloudが作りたくなったら。">
 <meta property="og:url" content="https://kyoro1.github.io/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/index.html">
 <meta property="og:site_name" content="Infer our lives with data">
-<meta property="og:description" content="やりたいこと 極力少ないステップでWord Cloudを作ること。(1度作ってしまえば充分という時にどうぞ)  ポイント 形態素解析を janomeで実行 MeCabだとpythonから見えるようにするための設定が必要   Word Cloudに利用するフォントの設定  環境 Windows 10 python 3.7  Library setupAnacondaを入れていれば、こんなところで大丈">
+<meta property="og:description" content="やりたいこと 極力少ないステップでWord Cloudを作ること。(1度作ってしまえば充分という時にどうぞ)  ポイント 形態素解析を janomeで実行 MeCabだとpythonから見えるようにするための設定が必要   Word Cloudに利用するフォントの設定  環境 Windows 10 python 3.7">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/80539/07387425-72a9-734b-1fa7-6873c48a5131.png">
 <meta property="article:published_time" content="2020-04-06T14:01:06.000Z">
-<meta property="article:modified_time" content="2020-04-06T14:02:19.952Z">
+<meta property="article:modified_time" content="2020-04-06T14:19:14.609Z">
 <meta property="article:author" content="Kyoichi Iwasaki">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="wordcloud">
@@ -131,6 +131,9 @@
 <li>Windows 10</li>
 <li>python 3.7</li>
 </ul>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=13&l=ur1&category=foreignpicturebooks&banner=08276Z3QJJBAZ1884FG2&f=ifr&linkID=5b87b2dfcba2f645de6a1cc08fadff4d&t=languagenoteb-22&tracking_id=languagenoteb-22" width="468" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+
+<a id="more"></a>
 <h1 id="Library-setup"><a href="#Library-setup" class="headerlink" title="Library setup"></a>Library setup</h1><p>Anacondaを入れていれば、こんなところで大丈夫でしょうかね：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install janome</span><br><span class="line">pip install wordcloud</span><br></pre></td></tr></table></figure>
 <h1 id="環境設定"><a href="#環境設定" class="headerlink" title="環境設定"></a>環境設定</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> janome.tokenizer <span class="keyword">import</span> Tokenizer</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br></pre></td></tr></table></figure>
@@ -266,21 +269,6 @@
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
