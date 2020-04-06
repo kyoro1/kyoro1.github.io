@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161733173-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161733173-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>出現確率1%のおみくじを100回連続引けば、1回は当たる？ | Infer our lives with data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="今回のお題インスパイアされた元記事ではおみくじではなくガチャなんですが、、、  確率が明らかになったところで，それを正しく理解できなければ意味がない。よくある間違いが，「出現確率1％なら，100回ガチャを引けばほぼ確実に出るだろう」という思い込みだ。実際のところ，ガチャを100回引いて出現確率1％のものが当たる確率は約63％でしかない。表現を変えれば，100人のプレイヤーがそれぞれ100回引くと，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="出現確率1%のおみくじを100回連続引けば、1回は当たる？">
+<meta property="og:url" content="https://kyoro1.github.io/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Infer our lives with data">
+<meta property="og:description" content="今回のお題インスパイアされた元記事ではおみくじではなくガチャなんですが、、、  確率が明らかになったところで，それを正しく理解できなければ意味がない。よくある間違いが，「出現確率1％なら，100回ガチャを引けばほぼ確実に出るだろう」という思い込みだ。実際のところ，ガチャを100回引いて出現確率1％のものが当たる確率は約63％でしかない。表現を変えれば，100人のプレイヤーがそれぞれ100回引くと，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://qiita-image-store.s3.amazonaws.com/0/80539/67a23748-4927-81b2-50b3-346694368b03.png">
+<meta property="article:published_time" content="2020-04-06T14:37:14.000Z">
+<meta property="article:modified_time" content="2020-04-06T14:39:52.516Z">
+<meta property="article:author" content="Kyoichi Iwasaki">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="Poisson distribution">
+<meta property="article:tag" content="binominal distribution">
+<meta property="article:tag" content="restore extraction">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qiita-image-store.s3.amazonaws.com/0/80539/67a23748-4927-81b2-50b3-346694368b03.png">
+<meta name="twitter:creator" content="@kyoro1">
+  
+    <link rel="alternate" href="/atom.xml" title="Infer our lives with data" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Infer our lives with data</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">topics around data science</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://kyoro1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-出現確率1-のおみくじを100回連続引けば、1回は当たる？" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F/" class="article-date">
+  <time class="dt-published" datetime="2020-04-06T14:37:14.000Z" itemprop="datePublished">2020-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      出現確率1%のおみくじを100回連続引けば、1回は当たる？
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="今回のお題"><a href="#今回のお題" class="headerlink" title="今回のお題"></a>今回のお題</h1><p>インスパイアされた元記事ではおみくじではなくガチャなんですが、、、</p>
+<blockquote>
+<p>確率が明らかになったところで，それを正しく理解できなければ意味がない。よくある間違いが，「出現確率1％なら，100回ガチャを引けばほぼ確実に出るだろう」という思い込みだ。実際のところ，ガチャを100回引いて出現確率1％のものが当たる確率は約63％でしかない。表現を変えれば，100人のプレイヤーがそれぞれ100回引くと，63人は当たるが，残り37人は100回全部ハズレ，という感じだ。<br><a href="http://www.4gamer.net/games/999/G999905/20160305003/" target="_blank" rel="noopener">http://www.4gamer.net/games/999/G999905/20160305003/</a></p>
+</blockquote>
+<p>実際にはどういうことなんでしょうか？<br>数学的な背景、Pythonで計算＆図示までを簡単にご紹介。</p>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=12&l=ur1&category=winerotation&f=ifr&linkID=6c6053ec7a7df5bf907d6a68a8295e69&t=languagenoteb-22&tracking_id=languagenoteb-22" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+
+<a id="more"></a>
+<h1 id="確率論的には"><a href="#確率論的には" class="headerlink" title="確率論的には"></a>確率論的には</h1><blockquote>
+<p>1回あたり1%の確率で当たりが出るガチャを連続100回引いた場合、1回も当たりが出ないことがある？！</p>
+</blockquote>
+<p>ということですね。神社にあるおみくじだと1回引いたおみくじは通常元に戻しません（その代わり、神社の境内のどっかに結んだりしますねー）ので、1回引くごとに全おみくじから1枚ずつ減っていきます（非復元抽出）。<br>今回のガチャでは、常に100枚のくじのうち1回が当たり、、という状況なので、復元抽出に当たりますね。（おみくじで言えば自分のくじを元に戻すことに相当）</p>
+<h2 id="Pythonで計算してみよう"><a href="#Pythonで計算してみよう" class="headerlink" title="Pythonで計算してみよう"></a>Pythonで計算してみよう</h2><p>ということで、</p>
+<blockquote>
+<p>1回あたり1%の確率で当たりが出るガチャを連続100回引いた場合、1回も当たりが出ないことがある？！</p>
+</blockquote>
+<p>を定量化してみます。これは、要は100回連続でハズレを引き続けることに相当するので</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1-0.01)^&#123;100&#125;&#x3D;0.99^&#123;100&#125;</span><br></pre></td></tr></table></figure>
+<p>を計算させればいいですね。pythonで計算させると、</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0.99</span>**<span class="number">100</span></span><br><span class="line"><span class="number">0.3660323412732292</span></span><br></pre></td></tr></table></figure>
+<p>なので<code>0.366≒36.6%</code>程度1回も当たらないことになりますね（残念）。これは、元記事の</p>
+<blockquote>
+<p>残り37人は100回全部ハズレ，という感じだ。</p>
+</blockquote>
+<p>の部分ですね。</p>
+<h1 id="数学的にちゃんと考える"><a href="#数学的にちゃんと考える" class="headerlink" title="数学的にちゃんと考える"></a>数学的にちゃんと考える</h1><p>今回の場合、非復元抽出で100回連続試行しますので、数学では「二項分布」が相当します。</p>
+<p>よくある話が「コインの裏、もしくは表が100回中何回出るか？」みたいな文脈ですが、オモテウラの出方がイビツで「表が出る確率が0.01、裏が出る確率が0.99」のような状況です。（どんなコインか見てみたいものですが、、）</p>
+<h2 id="定式化"><a href="#定式化" class="headerlink" title="定式化"></a>定式化</h2><p>そうすると、100回の非復元抽出で<code>r</code>回当たりが出る確率は</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">&#123;&#125;_&#123;100&#125; C _r\times 0.01^r\times (1-0.01)^&#123;100-r&#125;</span><br><span class="line">\end&#123;eqnarray&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="幾つか計算してみる"><a href="#幾つか計算してみる" class="headerlink" title="幾つか計算してみる"></a>幾つか計算してみる</h2><h3 id="r-1のとき"><a href="#r-1のとき" class="headerlink" title="r=1のとき"></a><code>r=1</code>のとき</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">&#123;&#125;_&#123;100&#125; C_1\times 0.01\times (1-0.01)^&#123;99&#125; &#x3D; 100\times 0.01\times 0.99^&#123;99&#125;&#x3D;0.3697...</span><br><span class="line">\end&#123;eqnarray&#125;</span><br></pre></td></tr></table></figure>
+<p>⇒大体<code>0.370</code>くらいなんで、1回も当たりを引かない確率と、1回当たりを引く確率が大体一緒なんですね。</p>
+<h3 id="r-2のとき"><a href="#r-2のとき" class="headerlink" title="r=2のとき"></a><code>r=2</code>のとき</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">&#123;&#125;_&#123;100&#125; C_2\times 0.01^2\times (1-0.01)^&#123;98&#125; &#x3D; 4950\times 0.01^2\times 0.99^&#123;98&#125;&#x3D;0.1849...</span><br><span class="line">\end&#123;eqnarray&#125;</span><br></pre></td></tr></table></figure>
+<p>⇒今度は<code>0.18</code>くらいなので、いきなり確率が半減してしまいます、、、</p>
+<h1 id="確率分布描いてみっか"><a href="#確率分布描いてみっか" class="headerlink" title="確率分布描いてみっか"></a>確率分布描いてみっか</h1><p>、、、と個々のケースを都度都度考えているのも大変なので、（確率）分布を描いてみると全体像が見えてきそうです。</p>
+<h2 id="Pythonでグラフを描いてみる"><a href="#Pythonでグラフを描いてみる" class="headerlink" title="Pythonでグラフを描いてみる"></a>Pythonでグラフを描いてみる</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">init = <span class="number">0</span></span><br><span class="line">trial = <span class="number">100</span></span><br><span class="line">prob = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 組み合わせを再帰的に計算</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">comb</span><span class="params">(n, r)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">or</span> r == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> comb(n, r<span class="number">-1</span>) * (n-r+<span class="number">1</span>) / r </span><br><span class="line"></span><br><span class="line"><span class="comment">### r回当たりである確率を計算</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binominal</span><span class="params">(n,r,p)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> comb(n,r)*(p**r)*((<span class="number">1</span>-p)**(n-r))</span><br><span class="line"></span><br><span class="line"><span class="comment">### 関数のベクトル化</span></span><br><span class="line">bi = np.vectorize(binominal)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 試行回数を配列で持たせる</span></span><br><span class="line">arr = np.arange(init, trial)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 二項分布をベクトル演算で計算</span></span><br><span class="line">plot_values = pd.DataFrame(bi(trial, arr, prob), columns=[<span class="string">'probability'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">### 図示</span></span><br><span class="line">plot_values.plot()</span><br></pre></td></tr></table></figure>
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/80539/67a23748-4927-81b2-50b3-346694368b03.png" alt="graph.png"></p>
+<p>⇒<code>0</code>や<code>1</code>の付近でピークが終わり、急激に確率が0に近づいていますね、、、（汗）</p>
+<h1 id="Poisson分布"><a href="#Poisson分布" class="headerlink" title="Poisson分布"></a>Poisson分布</h1><p>↑の分布、どっかで見たなー、という方は鋭いです。Poisson分布ですね。Wikipediaの「二項分布」のページでは</p>
+<blockquote>
+<p>n が大きく p が十分小さい場合、np は適度な大きさとなるため、パラメータ λ = np であるポアソン分布が 二項分布B(n, p) の良好な近似を与える。すなわち、期待値λ = npを一定とし、nを十分大きくしたとき、</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P[X&#x3D;k]\simeq \frac&#123;\lambda^ke^&#123;-\lambda&#125;&#125;&#123;k!&#125;</span><br></pre></td></tr></table></figure>
+<p>とあります。我々は<code>python</code>を使って<code>r=0, 1, 2</code>の計算を行いましたが、試しに上の式に<code>k=0, 1, 2</code>を当てはめてみましょうか。<code>λ=100×0.01=1</code>に注意すると一般に</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P[X&#x3D;k]\simeq \frac&#123;1&#125;&#123;e\times k!&#125;</span><br></pre></td></tr></table></figure>
+<p>なので、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P[X&#x3D;0]&#x3D;P[X&#x3D;1]&#x3D;\frac&#123;1&#125;&#123;e&#125; \simeq 0.3679...</span><br></pre></td></tr></table></figure>
+<p>となり、<code>r=0, 1</code>の時が確率が同程度であることが確認できますね。さらに、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P[X&#x3D;2]&#x3D;\frac&#123;1&#125;&#123;2e&#125;\simeq 0.1839...</span><br></pre></td></tr></table></figure>
+<p>なので、<code>r=2</code>の場合は<code>r=0, 1</code>の場合の確率の半分というところも大体合っていますね！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kyoro1.github.io/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F/" data-id="ck8ol05v10001pkslbo3r67uc" data-title="出現確率1%のおみくじを100回連続引けば、1回は当たる？" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Poisson-distribution/" rel="tag">Poisson distribution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binominal-distribution/" rel="tag">binominal distribution</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restore-extraction/" rel="tag">restore extraction</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          出現確率1%のおみくじを100回連続引けば、1回は当たる？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Word Cloudが作りたくなったら。</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Poisson-distribution/" style="font-size: 10px;">Poisson distribution</a> <a href="/tags/binominal-distribution/" style="font-size: 10px;">binominal distribution</a> <a href="/tags/data-science/" style="font-size: 20px;">data science</a> <a href="/tags/janome/" style="font-size: 10px;">janome</a> <a href="/tags/logistic-regression/" style="font-size: 10px;">logistic regression</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/multi-class-classification/" style="font-size: 10px;">multi-class classification</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/pmi-acp/" style="font-size: 10px;">pmi-acp</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/pytorch/" style="font-size: 20px;">pytorch</a> <a href="/tags/restore-extraction/" style="font-size: 10px;">restore extraction</a> <a href="/tags/self-introduction/" style="font-size: 10px;">self introduction</a> <a href="/tags/simple-regression/" style="font-size: 10px;">simple regression</a> <a href="/tags/site-maintenance/" style="font-size: 10px;">site maintenance</a> <a href="/tags/wordcloud/" style="font-size: 10px;">wordcloud</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F-1/">出現確率1%のおみくじを100回連続引けば、1回は当たる？</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F/">出現確率1%のおみくじを100回連続引けば、1回は当たる？</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/">Word Cloudが作りたくなったら。</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">pytorchでlogistic回帰をやってみる</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">Pytorchで単回帰やってみる</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Kyoichi Iwasaki<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

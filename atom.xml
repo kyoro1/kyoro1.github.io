@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-04-06T14:19:14.609Z</updated>
+  <updated>2020-04-06T14:40:01.926Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>出現確率1%のおみくじを100回連続引けば、1回は当たる？</title>
+    <link href="https://kyoro1.github.io/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F-1/"/>
+    <id>https://kyoro1.github.io/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F-1/</id>
+    <published>2020-04-06T14:40:01.000Z</published>
+    <updated>2020-04-06T14:40:01.926Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>出現確率1%のおみくじを100回連続引けば、1回は当たる？</title>
+    <link href="https://kyoro1.github.io/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F/"/>
+    <id>https://kyoro1.github.io/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F/</id>
+    <published>2020-04-06T14:37:14.000Z</published>
+    <updated>2020-04-06T14:39:52.516Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;今回のお題&quot;&gt;&lt;a href=&quot;#今回のお題&quot; class=&quot;headerlink&quot; title=&quot;今回のお題&quot;&gt;&lt;/a&gt;今回のお題&lt;/h1&gt;&lt;p&gt;インスパイアされた元記事ではおみくじではなくガチャなんですが、、、&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;確率が明らかになったところで，それを正しく理解できなければ意味がない。よくある間違いが，「出現確率1％なら，100回ガチャを引けばほぼ確実に出るだろう」という思い込みだ。実際のところ，ガチャを100回引いて出現確率1％のものが当たる確率は約63％でしかない。表現を変えれば，100人のプレイヤーがそれぞれ100回引くと，63人は当たるが，残り37人は100回全部ハズレ，という感じだ。&lt;br&gt;&lt;a href=&quot;http://www.4gamer.net/games/999/G999905/20160305003/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.4gamer.net/games/999/G999905/20160305003/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;実際にはどういうことなんでしょうか？&lt;br&gt;数学的な背景、Pythonで計算＆図示までを簡単にご紹介。&lt;/p&gt;
+&lt;iframe src=&quot;https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=12&amp;l=ur1&amp;category=winerotation&amp;f=ifr&amp;linkID=6c6053ec7a7df5bf907d6a68a8295e69&amp;t=languagenoteb-22&amp;tracking_id=languagenoteb-22&quot; width=&quot;300&quot; height=&quot;250&quot; scrolling=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; style=&quot;border:none;&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="python" scheme="https://kyoro1.github.io/tags/python/"/>
+    
+      <category term="Poisson distribution" scheme="https://kyoro1.github.io/tags/Poisson-distribution/"/>
+    
+      <category term="binominal distribution" scheme="https://kyoro1.github.io/tags/binominal-distribution/"/>
+    
+      <category term="restore extraction" scheme="https://kyoro1.github.io/tags/restore-extraction/"/>
+    
+  </entry>
   
   <entry>
     <title>Word Cloudが作りたくなったら。</title>
