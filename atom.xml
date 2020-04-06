@@ -115,22 +115,18 @@
     <link href="https://kyoro1.github.io/2020/04/01/Autograd%E3%82%92%E8%A9%A6%E3%81%99/"/>
     <id>https://kyoro1.github.io/2020/04/01/Autograd%E3%82%92%E8%A9%A6%E3%81%99/</id>
     <published>2020-04-01T13:33:52.000Z</published>
-    <updated>2020-04-02T11:02:42.635Z</updated>
+    <updated>2020-04-06T14:22:58.803Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;お仕事で&lt;code&gt;pytorch&lt;/code&gt;を使うって言うので、個人的なメモのその１．環境として&lt;/p&gt;
+      &lt;p&gt;お仕事で&lt;code&gt;pytorch&lt;/code&gt;を使うって言うので、個人的なメモのその１．環境として&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;pythonは3.7&lt;/li&gt;
 &lt;li&gt;pytorchは1.4.0&lt;br&gt;環境はセットアップされた前提だとします。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2
-        
-      
+&lt;h2 id=&quot;AutoGradについて&quot;&gt;&lt;a href=&quot;#AutoGradについて&quot; class=&quot;headerlink&quot; title=&quot;AutoGradについて&quot;&gt;&lt;/a&gt;&lt;code&gt;AutoGrad&lt;/code&gt;について&lt;/h2&gt;&lt;figure class=&quot;highlight py&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;## まずはimport&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;## Tensorを作ります&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tensor1 = torch.Tensor([[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;], [&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;]])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tensor2 = torch.Tensor([[&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;], [&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;]])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;後々のために数式で書いておきましょうか。&lt;/p&gt;
+&lt;iframe src=&quot;https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=48&amp;l=ur1&amp;category=foodbeverage&amp;f=ifr&amp;linkID=f4fb4deb0a6a79bf9e547780bdcc8627&amp;t=languagenoteb-22&amp;tracking_id=languagenoteb-22&quot; width=&quot;728&quot; height=&quot;90&quot; scrolling=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; style=&quot;border:none;&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
     
     </summary>
     
