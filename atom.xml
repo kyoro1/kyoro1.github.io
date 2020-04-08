@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-04-08T01:09:01.685Z</updated>
+  <updated>2020-04-08T01:11:08.763Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="https://kyoro1.github.io/2020/04/08/%E3%83%A2%E3%82%B6%E3%82%A4%E3%82%AF%E7%94%BB%E5%83%8F%E3%82%92%E4%BD%9C%E3%82%8B/"/>
     <id>https://kyoro1.github.io/2020/04/08/%E3%83%A2%E3%82%B6%E3%82%A4%E3%82%AF%E7%94%BB%E5%83%8F%E3%82%92%E4%BD%9C%E3%82%8B/</id>
     <published>2020-04-08T01:01:51.000Z</published>
-    <updated>2020-04-08T01:09:01.685Z</updated>
+    <updated>2020-04-08T01:11:08.763Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;お仕事でちょこっと&lt;/p&gt;
+      &lt;p&gt;お仕事でちょこっと使う機会があったので、備忘で。&lt;/p&gt;
 &lt;h2 id=&quot;OpenCVをインストール&quot;&gt;&lt;a href=&quot;#OpenCVをインストール&quot; class=&quot;headerlink&quot; title=&quot;OpenCVをインストール&quot;&gt;&lt;/a&gt;OpenCVをインストール&lt;/h2&gt;&lt;p&gt;必要なら入れましょう。使う時は&lt;code&gt;cv2&lt;/code&gt;なんですが、&lt;code&gt;pip install&lt;/code&gt;の時は&lt;code&gt;opencv-python&lt;/code&gt;なんですよね、、&lt;/p&gt;
 &lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pip install opencv-python&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;iframe src=&quot;https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=12&amp;l=ur1&amp;category=electronics&amp;banner=0TBHB5GKJC48FARC9V82&amp;f=ifr&amp;linkID=5a21ec8fd6b9b487850caec451dd492c&amp;t=languagenoteb-22&amp;tracking_id=languagenoteb-22&quot; width=&quot;300&quot; height=&quot;250&quot; scrolling=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; style=&quot;border:none;&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
