@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-04-08T01:11:08.763Z</updated>
+  <updated>2020-07-11T08:49:11.776Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2値分類の精度？</title>
+    <link href="https://kyoro1.github.io/2020/07/11/2%E5%80%A4%E5%88%86%E9%A1%9E%E3%81%AE%E7%B2%BE%E5%BA%A6%EF%BC%9F/"/>
+    <id>https://kyoro1.github.io/2020/07/11/2%E5%80%A4%E5%88%86%E9%A1%9E%E3%81%AE%E7%B2%BE%E5%BA%A6%EF%BC%9F/</id>
+    <published>2020-07-11T05:18:59.000Z</published>
+    <updated>2020-07-11T08:49:11.776Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;気になったこと&quot;&gt;&lt;a href=&quot;#気になったこと&quot; class=&quot;headerlink&quot; title=&quot;気になったこと&quot;&gt;&lt;/a&gt;気になったこと&lt;/h1&gt;&lt;p&gt;世間ではコロナ騒動で検査が効く／効かない、効果は？などと疑心暗鬼になっていますが、&lt;br&gt;正確に捉えるために、いろんな指標が何を指すのか、今一度確認してみます。&lt;/p&gt;
+&lt;p&gt;ある病気Aに対して、検査結果が陽性(その病気)、陰性(大丈夫そう)という結果が次の結果だとします。&lt;sup&gt;&lt;a href=&quot;#fn_1&quot; id=&quot;reffn_1&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;div class=&quot;table-container&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;検査陽性&lt;/th&gt;
+&lt;th&gt;検査陰性&lt;/th&gt;
+&lt;th&gt;Total&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;病気Aあり&lt;/td&gt;
+&lt;td&gt;85&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;td&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;病気Aなし&lt;/td&gt;
+&lt;td&gt;1,284&lt;/td&gt;
+&lt;td&gt;8,415&lt;/td&gt;
+&lt;td&gt;9,900&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Total&lt;/td&gt;
+&lt;td&gt;1,570&lt;/td&gt;
+&lt;td&gt;8,430&lt;/td&gt;
+&lt;td&gt;10,000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;iframe src=&quot;https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=12&amp;l=ur1&amp;category=winerotation&amp;f=ifr&amp;linkID=6c6053ec7a7df5bf907d6a68a8295e69&amp;t=languagenoteb-22&amp;tracking_id=languagenoteb-22&quot; width=&quot;300&quot; height=&quot;250&quot; scrolling=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; style=&quot;border:none;&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="python" scheme="https://kyoro1.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>モザイク画像を作る</title>
@@ -221,7 +274,7 @@
     <link href="https://kyoro1.github.io/2020/03/24/support-pages/"/>
     <id>https://kyoro1.github.io/2020/03/24/support-pages/</id>
     <published>2020-03-24T12:29:44.000Z</published>
-    <updated>2020-04-06T14:47:04.606Z</updated>
+    <updated>2020-07-11T08:21:27.387Z</updated>
     
     <summary type="html">
     
