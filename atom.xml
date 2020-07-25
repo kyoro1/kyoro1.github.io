@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-07-11T08:49:11.776Z</updated>
+  <updated>2020-07-25T07:37:30.431Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>decorator</title>
+    <link href="https://kyoro1.github.io/2020/07/25/decorator/"/>
+    <id>https://kyoro1.github.io/2020/07/25/decorator/</id>
+    <published>2020-07-25T07:14:56.000Z</published>
+    <updated>2020-07-25T07:37:30.431Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;コロナ禍でいろんな勉強が捗るって話もあり、pythonのdecoratorを復習してました。&lt;br&gt;ちょっと取っつきにくいテーマではあるのですが、関数(&lt;code&gt;def ...&lt;/code&gt; というやつ)に機能を付け加えるやつ、みたいに覚えておけばいいんじゃないですかね（雑すぎるか、、）&lt;/p&gt;
+&lt;h2 id=&quot;行ったり来たりと、EDAする時に使えるかも&quot;&gt;&lt;a href=&quot;#行ったり来たりと、EDAする時に使えるかも&quot; class=&quot;headerlink&quot; title=&quot;行ったり来たりと、EDAする時に使えるかも&quot;&gt;&lt;/a&gt;行ったり来たりと、EDAする時に使えるかも&lt;/h2&gt;&lt;p&gt;と思ったのです。探索的なデータ解析(Exploratory Data Analysis)時って、どんだけ時間がかかるか、って忘れがちなのでdecoratorで予め用意しとけば、毎度毎度処理計測時間を書かなくて多少は楽かなー、と。&lt;/p&gt;
+&lt;iframe src=&quot;https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=12&amp;l=ur1&amp;category=winerotation&amp;f=ifr&amp;linkID=6c6053ec7a7df5bf907d6a68a8295e69&amp;t=languagenoteb-22&amp;tracking_id=languagenoteb-22&quot; width=&quot;300&quot; height=&quot;250&quot; scrolling=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; style=&quot;border:none;&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="python" scheme="https://kyoro1.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>2値分類の精度？</title>

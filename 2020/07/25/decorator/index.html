@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161733173-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-161733173-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>decorator | Infer our lives with data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="コロナ禍でいろんな勉強が捗るって話もあり、pythonのdecoratorを復習してました。ちょっと取っつきにくいテーマではあるのですが、関数(def ... というやつ)に機能を付け加えるやつ、みたいに覚えておけばいいんじゃないですかね（雑すぎるか、、） 行ったり来たりと、EDAする時に使えるかもと思ったのです。探索的なデータ解析(Exploratory Data Analysis)時って、どん">
+<meta property="og:type" content="article">
+<meta property="og:title" content="decorator">
+<meta property="og:url" content="https://kyoro1.github.io/2020/07/25/decorator/index.html">
+<meta property="og:site_name" content="Infer our lives with data">
+<meta property="og:description" content="コロナ禍でいろんな勉強が捗るって話もあり、pythonのdecoratorを復習してました。ちょっと取っつきにくいテーマではあるのですが、関数(def ... というやつ)に機能を付け加えるやつ、みたいに覚えておけばいいんじゃないですかね（雑すぎるか、、） 行ったり来たりと、EDAする時に使えるかもと思ったのです。探索的なデータ解析(Exploratory Data Analysis)時って、どん">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-25T07:14:56.000Z">
+<meta property="article:modified_time" content="2020-07-25T07:37:30.431Z">
+<meta property="article:author" content="Kyoichi Iwasaki">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@kyoro1">
+  
+    <link rel="alternate" href="/atom.xml" title="Infer our lives with data" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Infer our lives with data</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">topics around data science</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://kyoro1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-decorator" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/07/25/decorator/" class="article-date">
+  <time class="dt-published" datetime="2020-07-25T07:14:56.000Z" itemprop="datePublished">2020-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      decorator
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>コロナ禍でいろんな勉強が捗るって話もあり、pythonのdecoratorを復習してました。<br>ちょっと取っつきにくいテーマではあるのですが、関数(<code>def ...</code> というやつ)に機能を付け加えるやつ、みたいに覚えておけばいいんじゃないですかね（雑すぎるか、、）</p>
+<h2 id="行ったり来たりと、EDAする時に使えるかも"><a href="#行ったり来たりと、EDAする時に使えるかも" class="headerlink" title="行ったり来たりと、EDAする時に使えるかも"></a>行ったり来たりと、EDAする時に使えるかも</h2><p>と思ったのです。探索的なデータ解析(Exploratory Data Analysis)時って、どんだけ時間がかかるか、って忘れがちなのでdecoratorで予め用意しとけば、毎度毎度処理計測時間を書かなくて多少は楽かなー、と。</p>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=12&l=ur1&category=winerotation&f=ifr&linkID=6c6053ec7a7df5bf907d6a68a8295e69&t=languagenoteb-22&tracking_id=languagenoteb-22" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+
+<a id="more"></a>
+<p>例えば、こんな処理をしてる<sup><a href="#fn_1" id="reffn_1">1</a></sup>として<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counts</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment">## 単純に、数を数えてるだけだし、ある意味`n`が出力されるだけです。。</span></span><br><span class="line">    <span class="keyword">return</span> sum([<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)])</span><br></pre></td></tr></table></figure></p>
+<p>処理時間を計算したくなったとする、と。安直にやれば、</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="comment">## 処理開始に時刻取っておいて</span></span><br><span class="line">start = datetime.datetime.now()</span><br><span class="line"></span><br><span class="line"><span class="comment">### ココに処理を入れる、、、</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 何分かかったかな？を、差分で取る</span></span><br><span class="line">timelapse = datetime.datetime.now() - start</span><br><span class="line"></span><br><span class="line">print(timelapse)</span><br></pre></td></tr></table></figure>
+<p>なんてことをやってたのですが、前処理(<code>start = ...</code>)と後処理(<code>timelapse..</code>と<code>print(..)</code>)を出力しちゃえばいいや、と。</p>
+<p>ということで、こんなお手製のdecorator作ってみました、と。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">time_lapse</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        start = datetime.datetime.now()</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        timelapse = datetime.datetime.now() - start</span><br><span class="line">        print(timelapse)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+<p>で、作った後に、元の関数を<code>@</code>を付けてデコレートしてあげればいい、と。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@time_lapse</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counts</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> sum([<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)])</span><br><span class="line"></span><br><span class="line"><span class="comment">## 実行すると、こんな感じ：</span></span><br><span class="line"><span class="comment">## 0:00:07.803982</span></span><br><span class="line"><span class="comment">## 100000000</span></span><br></pre></td></tr></table></figure>
+<h2 id="実際使おうとすると"><a href="#実際使おうとすると" class="headerlink" title="実際使おうとすると"></a>実際使おうとすると</h2><p>100万件を一気に！というのも男気溢れる感じなので、まずは100件、1000件とデータ数を増やしていって、処理時間の推移を横目で見ながら最後に全件、、とかな気もしますが。</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><pre><code>+ [Next Step Python: Decorator](https://www.linkedin.com/learning-login/share?forceAccount=false&amp;redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fnext-step-python-decorators%3Ftrk%3Dshare_ent_url&amp;account=3322): 関数の関数、て話から、decoratorの使い方、HTMLにタグを入れるってのをdecoratorで実装してみたり、最後はFlaskで使うdecoratorまで書いてあります。
+</code></pre><p><sup><a href="#fn_1 普通、もっと難しいことをやると思いますけどね、普通は。" id="reffn_1 普通、もっと難しいことをやると思いますけどね、普通は。">1 普通、もっと難しいことをやると思いますけどね、普通は。</a></sup></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kyoro1.github.io/2020/07/25/decorator/" data-id="ckd1bpgdc000030sl8sgj154t" data-title="decorator" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/11/2%E5%80%A4%E5%88%86%E9%A1%9E%E3%81%AE%E7%B2%BE%E5%BA%A6%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2値分類の精度？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Poisson-distribution/" style="font-size: 10px;">Poisson distribution</a> <a href="/tags/binominal-distribution/" style="font-size: 10px;">binominal distribution</a> <a href="/tags/data-science/" style="font-size: 15px;">data science</a> <a href="/tags/janome/" style="font-size: 10px;">janome</a> <a href="/tags/logistic-regression/" style="font-size: 10px;">logistic regression</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/multi-class-classification/" style="font-size: 10px;">multi-class classification</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/pmi-acp/" style="font-size: 10px;">pmi-acp</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/pytorch/" style="font-size: 15px;">pytorch</a> <a href="/tags/restore-extraction/" style="font-size: 10px;">restore extraction</a> <a href="/tags/self-introduction/" style="font-size: 10px;">self introduction</a> <a href="/tags/simple-regression/" style="font-size: 10px;">simple regression</a> <a href="/tags/site-maintenance/" style="font-size: 10px;">site maintenance</a> <a href="/tags/wordcloud/" style="font-size: 10px;">wordcloud</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/25/decorator/">decorator</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/11/2%E5%80%A4%E5%88%86%E9%A1%9E%E3%81%AE%E7%B2%BE%E5%BA%A6%EF%BC%9F/">2値分類の精度？</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/08/%E3%83%A2%E3%82%B6%E3%82%A4%E3%82%AF%E7%94%BB%E5%83%8F%E3%82%92%E4%BD%9C%E3%82%8B/">モザイク画像を作る</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/%E5%87%BA%E7%8F%BE%E7%A2%BA%E7%8E%871-%E3%81%AE%E3%81%8A%E3%81%BF%E3%81%8F%E3%81%98%E3%82%92100%E5%9B%9E%E9%80%A3%E7%B6%9A%E5%BC%95%E3%81%91%E3%81%B0%E3%80%811%E5%9B%9E%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%8B%EF%BC%9F/">出現確率1%のおみくじを100回連続引けば、1回は当たる？</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/">Word Cloudが作りたくなったら。</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Kyoichi Iwasaki<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

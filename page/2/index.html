@@ -91,6 +91,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Pytorchでlogistic回帰をやってみる" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/" class="article-date">
+  <time class="dt-published" datetime="2020-04-04T01:30:21.000Z" itemprop="datePublished">2020-04-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">pytorchでlogistic回帰をやってみる</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><p>例によって設定から。今回はみんな大好き<code>iris</code>で試します。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=12&l=ur1&category=audible&banner=04TW4TSNDNB96FMCBT82&f=ifr&linkID=2f105cc326034cd49ba8aa17d89bf4cb&t=languagenoteb-22&tracking_id=languagenoteb-22" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+        
+          <p class="article-more-link">
+            <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kyoro1.github.io/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/" data-id="ck8kyjkr90000x8sleat46tdy" data-title="pytorchでlogistic回帰をやってみる" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-science/" rel="tag">data science</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logistic-regression/" rel="tag">logistic regression</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/multi-class-classification/" rel="tag">multi-class classification</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Pytorchで単回帰やってみる" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/04/02/Pytorch%E3%81%A7%E5%8D%98%E5%9B%9E%E5%B8%B0%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/" class="article-date">
@@ -296,57 +343,6 @@
 
 
   
-    <article id="post-about" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/03/24/about/" class="article-date">
-  <time class="dt-published" datetime="2020-03-24T12:11:27.000Z" itemprop="datePublished">2020-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/24/about/">about</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="中の人"><a href="#中の人" class="headerlink" title="中の人"></a>中の人</h2><ul>
-<li><p>Kyoichi Iwasaki</p>
-<ul>
-<li>Delivery Data Scientist in Microsoft Services</li>
-<li>twitter: <a href="https://twitter.com/kyoro1" target="_blank" rel="noopener">@kyoro1</a></li>
-<li>github: <a href="https://github.com/kyoro1" target="_blank" rel="noopener">https://github.com/kyoro1</a></li>
-</ul>
-</li>
-<li><p>To be continued…</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://kyoro1.github.io/2020/03/24/about/" data-id="ck85v2czb000018sl2t051olv" data-title="about" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/self-introduction/" rel="tag">self introduction</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -387,6 +383,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/25/decorator/">decorator</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/11/2%E5%80%A4%E5%88%86%E9%A1%9E%E3%81%AE%E7%B2%BE%E5%BA%A6%EF%BC%9F/">2値分類の精度？</a>
           </li>
         
@@ -400,10 +400,6 @@
         
           <li>
             <a href="/2020/04/06/Cloud%E3%81%8C%E4%BD%9C%E3%82%8A%E3%81%9F%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%82/">Word Cloudが作りたくなったら。</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/04/Pytorch%E3%81%A7logistic%E5%9B%9E%E5%B8%B0%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">pytorchでlogistic回帰をやってみる</a>
           </li>
         
       </ul>
@@ -451,21 +447,6 @@
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
