@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kyoro1.github.io/"/>
-  <updated>2020-07-25T07:37:30.431Z</updated>
+  <updated>2020-07-25T07:39:06.418Z</updated>
   <id>https://kyoro1.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://kyoro1.github.io/2020/07/25/decorator/"/>
     <id>https://kyoro1.github.io/2020/07/25/decorator/</id>
     <published>2020-07-25T07:14:56.000Z</published>
-    <updated>2020-07-25T07:37:30.431Z</updated>
+    <updated>2020-07-25T07:39:06.418Z</updated>
     
     <summary type="html">
     
@@ -34,6 +34,8 @@
     
     
       <category term="python" scheme="https://kyoro1.github.io/tags/python/"/>
+    
+      <category term="decorator" scheme="https://kyoro1.github.io/tags/decorator/"/>
     
   </entry>
   
